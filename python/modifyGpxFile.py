@@ -36,7 +36,7 @@ def increment_indexes():
 def get_timestamp():
   return timestamp.strftime(timestamp_format)
 
-def add_timestamp_to_row(row):
+def add_fake_data_to_row(row):
   row = re.sub(trkpt_pattern, "\\1><elem>" + str(elem_count) + "</elem>" + "<time>" + get_timestamp() + "</time></trkpt>", row)
   increment_indexes()
   return row
@@ -56,6 +56,6 @@ def save_to_file(data):
 data = read_file(gpx_filename)
 modified_data = []
 for line in data:
-  modified_data.append(add_timestamp_to_row(line))
+  modified_data.append(add_fake_data_to_row(line))
 
 save_to_file(modified_data)
