@@ -18,6 +18,8 @@ elem_count = 0
 timestamp_format = "%Y-%m-%dT%H:%M:%SZ"
 timestamp = datetime.datetime.strptime('1970-01-01T00:00:00Z', timestamp_format)
 
+#Saves to a similarly named file if no folder was specified.
+#Else save to specified folder, with same name as original file.
 def get_save_filename(): 
   filename_no_extension = re.search("^[^.]*", gpx_filename).group(0)
   modified_filename = filename_no_extension + "_modified.gpx"
