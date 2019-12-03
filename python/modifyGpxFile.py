@@ -2,12 +2,16 @@ import sys
 import re
 import datetime
 
+'''
+Adds fake timestamps and elem index to trkpt tags in a .gpx file. 
+Found a site that generated .gpx files without these, but needed these fields to simulate a trip on my phone, and editing 200+ lines manually is no bueno.
+'''
+
 if len(sys.argv) == 1:
   sys.exit("Not enough arguments specified.\nScript takes 1-2 arguments: first should be the .gpx file to modify. The 2nd (optional) is a subfolder to put the modified file into.")
 
 gpx_filename = sys.argv[1]
 save_folder = sys.argv[2] if len(sys.argv) > 2 else None
-
 
 trkpt_pattern = "(<trkpt.*?)/>"
 elem_count = 0
@@ -48,7 +52,6 @@ def save_to_file(data):
     for line in data:
       if line != None:
         modified_file.write(line)
-
 
 data = read_file(gpx_filename)
 modified_data = []
